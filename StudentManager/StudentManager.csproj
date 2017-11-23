@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\DataGridViewStyle.cs" />
     <Compile Include="Common\DataValidation.cs" />
     <Compile Include="Common\SerializeObjectToString.cs" />
     <Compile Include="FrmAbout.cs">

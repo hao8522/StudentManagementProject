@@ -161,11 +161,40 @@ namespace StudentManager
                     this.dgvStudentList.DataSource = null;
                     this.dgvStudentList.DataSource = this.stuList;
                 }
+
+
+                // add more student validation
+                DialogResult result = MessageBox.Show("Do you want to add more student?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    foreach(Control item in this.gbstuinfo.Controls)
+                    {
+                        if(item is TextBox)
+                        {
+                            item.Text = "";
+                        }
+                        else if(item is CheckBox)
+                        {
+                            ((RadioButton)item).Checked = false;
+                        }
+                    }
+
+                    this.cboClassName.SelectedIndex = -1;
+                    this.pbStu.Image = null;
+                    this.txtStudentName.Focus();
+                }
+                else
+                {
+                    this.Close();
+                }
+
+
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw new Exception("Add Student Exception:"+ex.Message);
             }
 
             #endregion
@@ -209,6 +238,9 @@ namespace StudentManager
             
         }
 
-     
+        private void dgvStudentList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            DataGridViewStyle.DgvRowPostPaint(this.dgvStudentList,e);
+        }
     }
 }
