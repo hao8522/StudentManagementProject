@@ -387,7 +387,7 @@
             this.btnModifyPwd.Name = "btnModifyPwd";
             this.btnModifyPwd.Size = new System.Drawing.Size(98, 44);
             this.btnModifyPwd.TabIndex = 1;
-            this.btnModifyPwd.Text = "Modify Password";
+            this.btnModifyPwd.Text = "Modify Pwd";
             this.btnModifyPwd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnModifyPwd.UseVisualStyleBackColor = true;
             this.btnModifyPwd.Click += new System.EventHandler(this.btnModifyPwd_Click);
@@ -396,7 +396,7 @@
             // 
             this.btnExit.Image = ((System.Drawing.Image)(resources.GetObject("btnExit.Image")));
             this.btnExit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExit.Location = new System.Drawing.Point(128, 665);
+            this.btnExit.Location = new System.Drawing.Point(129, 619);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(111, 44);
             this.btnExit.TabIndex = 1;
@@ -467,7 +467,7 @@
             // 
             this.btnGoXiketang.Image = ((System.Drawing.Image)(resources.GetObject("btnGoXiketang.Image")));
             this.btnGoXiketang.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGoXiketang.Location = new System.Drawing.Point(13, 665);
+            this.btnGoXiketang.Location = new System.Drawing.Point(10, 619);
             this.btnGoXiketang.Name = "btnGoXiketang";
             this.btnGoXiketang.Size = new System.Drawing.Size(98, 44);
             this.btnGoXiketang.TabIndex = 1;
@@ -486,7 +486,7 @@
             this.btnAttendanceQuery.Name = "btnAttendanceQuery";
             this.btnAttendanceQuery.Size = new System.Drawing.Size(110, 44);
             this.btnAttendanceQuery.TabIndex = 1;
-            this.btnAttendanceQuery.Text = "Attendance Search";
+            this.btnAttendanceQuery.Text = " Attendance Search";
             this.btnAttendanceQuery.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAttendanceQuery.UseVisualStyleBackColor = false;
             this.btnAttendanceQuery.Click += new System.EventHandler(this.btnAttendanceQuery_Click);

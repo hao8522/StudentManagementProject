@@ -5,6 +5,8 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using Models;
+using DAL;
 
 
 
@@ -12,17 +14,90 @@ namespace StudentManager
 {
     public partial class FrmAddStudent : Form
     {
-
+        public StudentClassService objStuClassService = new StudentClassService();
 
         public FrmAddStudent()
         {
             InitializeComponent();
+            // class name dropdown menu
+            this.cboClassName.DataSource = objStuClassService.GetAllStudentClass();
+            this.cboClassName.DisplayMember = "ClassName";
+            this.cboClassName.ValueMember = "ClassId";
+            this.cboClassName.SelectedIndex = -1;
       
         }
         //add student
         private void btnAdd_Click(object sender, EventArgs e)
         {
-       
+
+            #region Data validation
+            if (this.txtStudentName.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("The Student Name can not be null","Warning");
+                this.txtStudentName.Focus();
+                return;
+            }
+
+            if( !this.rdoFemale.Checked && !this.rdoMale.Checked)
+            {
+                MessageBox.Show("Please select Gender","Warning");
+                this.rdoMale.Focus();
+                return;
+            }
+
+            int age = DateTime.Now.Year - Convert.ToDateTime(this.dtpBirthday.Text).Year;
+            if( age<18 || age > 35)
+            {
+                MessageBox.Show("The age should be between 18 and 35","Warning");
+                this.dtpBirthday.Focus();
+                return;
+
+            }
+
+            if(this.cboClassName.SelectedIndex == -1)
+            {
+                MessageBox.Show("Plesas select Class Name");
+                this.cboClassName.Focus();
+                return;
+            }
+
+            if (this.txtStudentIdNo.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Please fill in Student id no card","Warning");
+                this.txtStudentIdNo.Focus();
+                return;
+            }
+
+            if (this.txtCardNo.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Please fill in Attendance Card No","Warning");
+                this.txtCardNo.Focus();
+                return;
+            }
+
+            if (this.txtPhoneNumber.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Please fill in phone number","Warning");
+                this.txtPhoneNumber.Focus();
+                return;
+            }
+
+            if (this.txtAddress.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Please fill in address","Warning");
+                this.txtAddress.Focus();
+                return;
+            }
+
+
+            if (!DataValidation.IsIdentityCard(this.txtStudentIdNo.Text.Trim()))
+            {
+                MessageBox.Show("The Student Id No format is incorrect", "Warning");
+                    this.txtStudentIdNo.Focus();
+                return;
+            }
+
+            #endregion
         }
         //close
         private void btnClose_Click(object sender, EventArgs e)
@@ -37,7 +112,13 @@ namespace StudentManager
         //select photo
         private void btnChoseImage_Click(object sender, EventArgs e)
         {
-         
+            OpenFileDialog objOpenFileDialog = new OpenFileDialog();
+            DialogResult result = objOpenFileDialog.ShowDialog();
+
+            if(result== DialogResult.OK)
+            {
+                this.pbStu.Image = Image.FromFile(objOpenFileDialog.FileName);
+            }
         }
         //start camera
         private void btnStartVideo_Click(object sender, EventArgs e)
@@ -52,7 +133,9 @@ namespace StudentManager
         //clear photo
         private void btnClear_Click(object sender, EventArgs e)
         {
-         
+            // clear photo
+            this.pbStu.Image = null;
+            
         }
 
      
