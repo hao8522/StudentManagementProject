@@ -13,6 +13,7 @@ namespace DAL
     {
         public static readonly string connStr = ConfigurationManager.ConnectionStrings["connString"].ToString();
 
+        #region insert,update modify ,delete data without parameter
 
         /// <summary>
         ///  insert, update ,delete data
@@ -94,8 +95,88 @@ namespace DAL
             }
 
         }
+        #endregion
+
+        #region  insert,update modify ,delete data with parameter
+        public static int Update(string sql,SqlParameter[] param)
+        {
+            SqlConnection conn = new SqlConnection(connStr);
+            SqlCommand cmd = new SqlCommand(sql, conn);
+
+            if(param != null)
+            {
+                cmd.Parameters.AddRange(param);
+            }
+
+            try
+            {
+                conn.Open();
+                return cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }  
+        }
 
 
+        public static object GetSingleResult(string sql, SqlParameter[] param)
+        {
+            SqlConnection conn = new SqlConnection(connStr);
+            SqlCommand cmd = new SqlCommand(sql,conn);
+
+            if(param != null)
+            {
+                cmd.Parameters.AddRange(param);
+            }
+
+            try
+            {
+                conn.Open();
+                return cmd.ExecuteScalar();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+        }
+
+        public static SqlDataReader  GetReader(string sql, SqlParameter[] param)
+        {
+            SqlConnection conn = new SqlConnection(connStr);
+            SqlCommand cmd = new SqlCommand(sql,conn);
+
+            if(param != null)
+            {
+                cmd.Parameters.AddRange(param);
+             
+            }
+
+            try
+            {
+                conn.Open();
+                return cmd.ExecuteReader(CommandBehavior.CloseConnection);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        #endregion
         /// <summary>
         /// get data set
         /// </summary>
