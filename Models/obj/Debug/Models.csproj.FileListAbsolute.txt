@@ -1,0 +1,5 @@
+D:\Git_EN\StudentManageProject\Models\bin\Debug\Models.dll
+D:\Git_EN\StudentManageProject\Models\bin\Debug\Models.pdb
+D:\Git_EN\StudentManageProject\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache
+D:\Git_EN\StudentManageProject\Models\obj\Debug\Models.dll
+D:\Git_EN\StudentManageProject\Models\obj\Debug\Models.pdb
