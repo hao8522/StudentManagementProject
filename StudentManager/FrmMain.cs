@@ -162,7 +162,15 @@ namespace StudentManager
         //switch account
         private void btnChangeAccount_Click(object sender, EventArgs e)
         {
+            FrmUserLogin objFrmLogin = new FrmUserLogin();
 
+            objFrmLogin.Text = "Switch Login Account";
+            DialogResult result = objFrmLogin.ShowDialog();
+
+            if(result== DialogResult.OK)
+            {
+                this.lblCurrentUser.Text = Program.currentAdmin.AdminName + "]";
+            }
         }
         private void tsbAddStudent_Click(object sender, EventArgs e)
         {
