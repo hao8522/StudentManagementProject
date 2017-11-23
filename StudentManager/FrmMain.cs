@@ -137,7 +137,12 @@ namespace StudentManager
         }
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-        
+            DialogResult result = MessageBox.Show("Are you sure to logout?", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+            if(result!= DialogResult.OK)
+            {
+                e.Cancel = true;
+            }
         }
 
         #endregion
