@@ -78,7 +78,7 @@ namespace StudentManager
         //Close application
         private void btnClose_Click(object sender, EventArgs e)
         {
-           
+            this.Close();
         }
 
         private void txtLoginId_KeyDown(object sender, KeyEventArgs e)

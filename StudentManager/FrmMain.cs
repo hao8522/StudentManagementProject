@@ -20,6 +20,31 @@ namespace StudentManager
 
             this.lblVersion.Text = "Version:" + ConfigurationManager.AppSettings["version"].ToString();
         }
+         
+        // close form
+        private void CloseForm()
+        {
+
+            foreach(Control item in this.spContainer.Panel2.Controls)
+            {
+                if(item is Form)
+                {
+                    Form objControl = (Form)item;
+                    objControl.Close();
+                }
+            }
+        }
+
+        // open form
+        private void OpenForm(Form objForm)
+        {
+            CloseForm();
+            objForm.TopLevel = false;
+            objForm.FormBorderStyle = FormBorderStyle.None;
+            objForm.Parent = this.spContainer.Panel2;
+            objForm.Dock = DockStyle.Fill;
+            objForm.Show();
+        }
 
         #region student details
 
@@ -27,6 +52,9 @@ namespace StudentManager
         //display added student info       
         private void tsmiAddStudent_Click(object sender, EventArgs e)
         {
+            FrmAddStudent objForm = new FrmAddStudent();
+
+            OpenForm(objForm);
           
         }
         private void btnAddStu_Click(object sender, EventArgs e)
@@ -36,8 +64,8 @@ namespace StudentManager
         //import student details
         private void tsmi_Import_Click(object sender, EventArgs e)
         {
-            //FrmImportData objForm = new FrmImportData();
-            //OpenForm(objForm);
+            FrmImportData objForm = new FrmImportData();
+            OpenForm(objForm);
         }
         private void btnImportStu_Click(object sender, EventArgs e)
         {
@@ -47,7 +75,7 @@ namespace StudentManager
         private void tsmi_Card_Click(object sender, EventArgs e)
         {
             FrmAttendance objForm = new FrmAttendance();
-          //  OpenForm(objForm);
+            OpenForm(objForm);
         }
         private void btnCard_Click(object sender, EventArgs e)
         {
@@ -57,7 +85,7 @@ namespace StudentManager
         private void tsmiQuery_Click(object sender, EventArgs e)
         {
             FrmScoreQuery objForm = new FrmScoreQuery();
-           // OpenForm(objForm);
+            OpenForm(objForm);
         }
         private void btnScoreQuery_Click(object sender, EventArgs e)
         {
@@ -67,7 +95,7 @@ namespace StudentManager
         private void tsmiManageStudent_Click(object sender, EventArgs e)
         {
             FrmStudentManage objForm = new FrmStudentManage();
-           // OpenForm(objForm);
+            OpenForm(objForm);
         }
         private void btnStuManage_Click(object sender, EventArgs e)
         {
@@ -77,7 +105,7 @@ namespace StudentManager
         private void tsmiQueryAndAnalysis_Click(object sender, EventArgs e)
         {
             FrmScoreManage objForm = new FrmScoreManage();
-          //  OpenForm(objForm);
+            OpenForm(objForm);
         }
         private void btnScoreAnalasys_Click(object sender, EventArgs e)
         {
@@ -87,7 +115,7 @@ namespace StudentManager
         private void tsmi_AQuery_Click(object sender, EventArgs e)
         {
             FrmAttendanceQuery objForm = new FrmAttendanceQuery();
-           // OpenForm(objForm);
+            OpenForm(objForm);
         }
         private void btnAttendanceQuery_Click(object sender, EventArgs e)
         {
@@ -109,7 +137,12 @@ namespace StudentManager
         }
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-        
+            DialogResult result = MessageBox.Show("Are you sure to logout?", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+            if(result!= DialogResult.OK)
+            {
+                e.Cancel = true;
+            }
         }
 
         #endregion
@@ -129,7 +162,15 @@ namespace StudentManager
         //switch account
         private void btnChangeAccount_Click(object sender, EventArgs e)
         {
+            FrmUserLogin objFrmLogin = new FrmUserLogin();
 
+            objFrmLogin.Text = "Switch Login Account";
+            DialogResult result = objFrmLogin.ShowDialog();
+
+            if(result== DialogResult.OK)
+            {
+                this.lblCurrentUser.Text = Program.currentAdmin.AdminName + "]";
+            }
         }
         private void tsbAddStudent_Click(object sender, EventArgs e)
         {
