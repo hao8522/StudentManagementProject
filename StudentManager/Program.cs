@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 
 using System.Diagnostics;
-
+using Models;
 
 namespace StudentManager
 {
@@ -21,9 +21,24 @@ namespace StudentManager
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new FrmMain());
+            FrmUserLogin frmLogin = new FrmUserLogin();
+
+            DialogResult result = frmLogin.ShowDialog();
+
+            if(result== DialogResult.OK)
+            {
+                Application.Run(new FrmMain());
+            }
+            else
+            {
+                Application.Exit();
+            }
+
+          
 
         }
+
+        public static SysAdmin currentAdmin=null;
 
     }
 }
