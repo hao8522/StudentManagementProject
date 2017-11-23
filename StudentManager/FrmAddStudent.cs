@@ -15,6 +15,7 @@ namespace StudentManager
     public partial class FrmAddStudent : Form
     {
         public StudentClassService objStuClassService = new StudentClassService();
+        public StudentService objStuService = new StudentService();
 
         public FrmAddStudent()
         {
@@ -94,6 +95,33 @@ namespace StudentManager
             {
                 MessageBox.Show("The Student Id No format is incorrect", "Warning");
                     this.txtStudentIdNo.Focus();
+                return;
+            }
+
+
+            string birthday = Convert.ToDateTime(this.dtpBirthday.Text.Trim()).ToString("yyyyMMdd");
+
+            if (!this.txtStudentIdNo.Text.Trim().Contains(birthday))
+            {
+                MessageBox.Show("The Birthday is not sams as The Student Id no format ");
+                this.txtStudentIdNo.Focus();
+                return;
+            }
+
+            // check Student Id no
+
+            if (objStuService.IsIdNoExisted(this.txtStudentIdNo.Text.Trim()))
+            {
+                MessageBox.Show("The StudentIdNo is exist,please check the Student Id No","Warning");
+                this.txtStudentIdNo.Focus();
+                return;
+            }
+
+            // check Card No
+            if (objStuService.IsCardNoExist(this.txtCardNo.Text.Trim()))
+            {
+                MessageBox.Show("The attendance card no is eixsted,please check Attendance Card No","Warning");
+                this.txtCardNo.Focus();
                 return;
             }
 
