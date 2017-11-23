@@ -16,6 +16,7 @@ namespace StudentManager
     {
         public StudentClassService objStuClassService = new StudentClassService();
         public StudentService objStuService = new StudentService();
+        List<Student> stuList = new List<Student>();
 
         public FrmAddStudent()
         {
@@ -25,6 +26,8 @@ namespace StudentManager
             this.cboClassName.DisplayMember = "ClassName";
             this.cboClassName.ValueMember = "ClassId";
             this.cboClassName.SelectedIndex = -1;
+
+            this.dgvStudentList.AutoGenerateColumns = false;
       
         }
         //add student
@@ -123,6 +126,46 @@ namespace StudentManager
                 MessageBox.Show("The attendance card no is eixsted,please check Attendance Card No","Warning");
                 this.txtCardNo.Focus();
                 return;
+            }
+
+            #endregion
+
+            #region  instializing Student object
+            Student objStu = new Student()
+            {
+                StudentName= this.txtStudentName.Text.Trim(),
+                Gender= this.rdoMale.Checked?"M":"F",
+                Birthday= Convert.ToDateTime(this.dtpBirthday.Text.Trim()),
+                StudentIdNo= this.txtStudentIdNo.Text.Trim(),
+                CardNo= this.txtCardNo.Text.Trim(),
+                Age = DateTime.Now.Year-Convert.ToDateTime(this.dtpBirthday.Text).Year,
+                PhoneNumber= this.txtPhoneNumber.Text.Trim(),
+                StudentAddress= this.txtAddress.Text.Trim(),
+                ClassId= Convert.ToInt32(this.cboClassName.SelectedValue),
+                StuImage= this.pbStu.Image!=null? new SerializeObjectToString().SerializeObject(this.pbStu.Image):"",
+                ClassName= this.cboClassName.Text.Trim()
+
+            };
+            #endregion
+
+            #region connecting database
+
+            try
+            {
+                int studentId = objStuService.AddStudent(objStu);
+
+                if (studentId > 1)
+                {
+                    objStu.StudentId = studentId;
+                    this.stuList.Add(objStu);
+                    this.dgvStudentList.DataSource = null;
+                    this.dgvStudentList.DataSource = this.stuList;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
 
             #endregion
