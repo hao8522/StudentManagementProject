@@ -15,8 +15,10 @@ namespace StudentManager
         public FrmMain()
         {
             InitializeComponent();
-      
 
+            this.lblCurrentUser.Text = Program.currentAdmin.AdminName + "]";
+
+            this.lblVersion.Text = "Version:" + ConfigurationManager.AppSettings["version"].ToString();
         }
 
         #region student details

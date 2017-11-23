@@ -39,7 +39,14 @@ namespace StudentManager
                 return;
             }
 
-            // instance of object
+            if (!DataValidation.IsInteger(this.txtLoginId.Text.Trim()))
+            {
+                MessageBox.Show("The login Id must be an integer","Warning");
+                this.txtLoginId.Focus();
+                return;
+            }
+
+            // instance of SysAdmin
             SysAdmin objAdmin = new SysAdmin()
             {
                 LoginId = Convert.ToInt32(this.txtLoginId.Text.Trim()),
@@ -72,6 +79,23 @@ namespace StudentManager
         private void btnClose_Click(object sender, EventArgs e)
         {
            
+        }
+
+        private void txtLoginId_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (this.txtLoginId.Text.Trim().Length != 0 && e.KeyValue == 13)
+            {
+
+                this.txtLoginPwd.Focus();
+            }
+        }
+
+        private void txtLoginPwd_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(this.txtLoginPwd.Text.Trim().Length!=0 && e.KeyValue == 13)
+            {
+                this.btnLogin_Click(null,null);
+            }
         }
     }
 }
