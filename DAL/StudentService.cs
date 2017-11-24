@@ -163,7 +163,55 @@ namespace DAL
            
         }
 
-        #endregion 
+        #endregion
 
+
+        #region Get Student By Student Id
+        public Student GetStudentById(string studentId)
+        {
+
+            string sql = "select StudentId,StudentName,Gender,Birthday,StudentIdNo,CardNo,StuImage,PhoneNumber,StudentAddress,ClassName from Students ";
+            sql += "inner join StudentClass on StudentClass.ClassId= Students.ClassId ";
+            sql += " where StudentId=@StudentId";
+
+            SqlParameter[] param = new SqlParameter[]
+            {
+                new SqlParameter("@StudentId",studentId)
+            };
+
+            try
+            {
+                Student objStu = null;
+
+                SqlDataReader objReader = SQLHelper.GetReader(sql, param);
+
+                if (objReader.Read())
+                {
+                    objStu = new Student()
+                    {
+                        StudentId= Convert.ToInt32(objReader["StudentId"]),
+                        StudentName= objReader["StudentName"].ToString(),
+                        Gender= objReader["Gender"].ToString(),
+                        Birthday= Convert.ToDateTime(objReader["Birthday"]),
+                        StudentIdNo= objReader["StudentIdNo"].ToString(),
+                        CardNo= objReader["CardNo"].ToString(),
+                        StuImage=objReader["StuImage"].ToString(),
+                        PhoneNumber=objReader["PhoneNumber"].ToString(),
+                        StudentAddress=objReader["StudentAddress"].ToString(),
+                        ClassName= objReader["ClassName"].ToString()
+                    };
+                }
+
+                objReader.Close();
+
+                return objStu;
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("get Student by StudentId database connection error:"+ex.Message);
+            }
+        }
+        #endregion
     }
 }

@@ -52,7 +52,25 @@ namespace StudentManager
         //search by student Id
         private void btnQueryById_Click(object sender, EventArgs e)
         {
-      
+            if (this.txtStudentId.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("The Student Id can not be null!","Warning");
+                this.txtStudentId.Focus();
+                return;
+            }
+
+            Student objStu = objStuService.GetStudentById(this.txtStudentId.Text.Trim());
+
+            if(objStu== null)
+            {
+                MessageBox.Show("The student is not exist!","Warning");
+            }
+            else
+            {
+
+                FrmStudentInfo frmStuInfo = new FrmStudentInfo(objStu);
+                frmStuInfo.Show();
+            }
           
         }
         private void txtStudentId_KeyDown(object sender, KeyEventArgs e)
