@@ -113,5 +113,57 @@ namespace DAL
 
         #endregion
 
+        #region get Students By  Class Name
+        public List<Student> GetStudentByClassName(string className)
+        {
+
+            string sql = "select StudentId,StudentName,Gender,StudentIdNo,Birthday,PhoneNumber,ClassName from Students ";
+            sql += "inner join StudentClass on StudentClass.ClassId= Students.ClassId ";
+            sql += " where ClassName=@ClassName ";
+
+            try
+            {
+
+                SqlParameter[] param = new SqlParameter[]
+                {
+                new SqlParameter("@ClassName",className),
+                };
+
+                List<Student> list = new List<Student>();
+
+                SqlDataReader objReader = SQLHelper.GetReader(sql,param);
+
+                while (objReader.Read())
+                {
+                    list.Add(new Student()
+                    {
+                        StudentId= Convert.ToInt32(objReader["StudentId"]),
+                        StudentName= objReader["StudentName"].ToString(),
+                        Gender=objReader["Gender"].ToString(),
+                        StudentIdNo= objReader["StudentIdNo"].ToString(),
+                        Birthday= Convert.ToDateTime(objReader["Birthday"]),
+                        PhoneNumber= objReader["PhoneNumber"].ToString(),
+                        ClassName=objReader["ClassName"].ToString()
+
+                    });
+                }
+
+
+                objReader.Close();
+
+                return list;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception("Get Student By Class Name Error:"+ex.Message);
+            }
+
+           
+        }
+
+        #endregion 
+
     }
 }

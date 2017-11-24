@@ -6,21 +6,46 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using Models;
+using DAL;
 
 
 namespace StudentManager
 {
     public partial class FrmStudentManage : Form
     {
+        private StudentClassService objStuClassService = new StudentClassService();
+        private StudentService objStuService = new StudentService();
 
         public FrmStudentManage()
         {
             InitializeComponent();
+
+            // class name dropdown menu
+            this.cboClass.DataSource = objStuClassService.GetAllStudentClass();
+            this.cboClass.DisplayMember = "ClassName";
+            this.cboClass.ValueMember = "ClassId";
+
+            this.cboClass.SelectedIndex =-1;
+
+            this.dgvStudentList.AutoGenerateColumns = false;
         
         }
-        //search by class 
+        //search by class name
         private void btnQuery_Click(object sender, EventArgs e)
         {
+
+            if (this.cboClass.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select Class Name","Warning");
+                this.cboClass.Focus();
+                return;
+            }
+
+
+            this.dgvStudentList.DataSource = objStuService.GetStudentByClassName(this.cboClass.Text);
+            new DataGridViewStyle().DgvStyle1(this.dgvStudentList);
+
         
         }
         //search by student Id
@@ -75,6 +100,11 @@ namespace StudentManager
         }
         //import to Excel
         private void btnExport_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboClass_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
