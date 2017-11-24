@@ -16,6 +16,7 @@ namespace StudentManager
     {
         private StudentClassService objStuClassService = new StudentClassService();
         private StudentService objStuService = new StudentService();
+        List<Student> stuList = new List<Student>();
 
         public FrmStudentManage()
         {
@@ -42,8 +43,8 @@ namespace StudentManager
                 return;
             }
 
-
-            this.dgvStudentList.DataSource = objStuService.GetStudentByClassName(this.cboClass.Text);
+            this.stuList= objStuService.GetStudentByClassName(this.cboClass.Text);
+            this.dgvStudentList.DataSource = this.stuList;
             new DataGridViewStyle().DgvStyle1(this.dgvStudentList);
 
         
@@ -51,6 +52,7 @@ namespace StudentManager
         //search by student Id
         private void btnQueryById_Click(object sender, EventArgs e)
         {
+      
           
         }
         private void txtStudentId_KeyDown(object sender, KeyEventArgs e)
@@ -75,12 +77,18 @@ namespace StudentManager
         //sort by name
         private void btnNameDESC_Click(object sender, EventArgs e)
         {
-         
+            if (this.dgvStudentList.RowCount == 0) return;
+
+            this.stuList.Sort(new StuNameDESC());
+            this.dgvStudentList.Refresh();
+
         }
         //sort by stuId
         private void btnStuIdDESC_Click(object sender, EventArgs e)
         {
-         
+            if (this.dgvStudentList.RowCount == 0) return;
+            this.stuList.Sort(new StuIdDESC());
+            this.dgvStudentList.Refresh();
         }
         //add line number
         private void dgvStudentList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
@@ -110,5 +118,27 @@ namespace StudentManager
         }
     }
 
-   
+
+    #region stuId StuName sort
+
+    class StuNameDESC : IComparer<Student>
+    {
+
+        public int Compare(Student x,Student y)
+        {
+            return y.StudentName.CompareTo(x.StudentName);
+        }
+    }
+
+
+    class StuIdDESC : IComparer<Student>
+    {
+        public int Compare(Student x,Student y)
+        {
+            return y.StudentId.CompareTo(x.StudentId);
+        }
+    }
+    #endregion
+
+
 }
