@@ -80,12 +80,42 @@ namespace StudentManager
         //double click to demonstrate students
         private void dgvStudentList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-           
+           if(this.dgvStudentList.CurrentRow != null)
+            {
+                string studentId = this.dgvStudentList.CurrentRow.Cells["StudentId"].Value.ToString();
+                Student objstu = objStuService.GetStudentById(studentId);
+                FrmStudentInfo objFrmStuInfo = new FrmStudentInfo(objstu);
+
+                objFrmStuInfo.Show();
+            }
         }
         //modify student
         private void btnEidt_Click(object sender, EventArgs e)
         {
-          
+            if (this.dgvStudentList.RowCount == 0)
+            {
+                MessageBox.Show("There is not student","Warning");
+                this.cboClass.Focus();
+                return;
+            }
+
+            if(this.dgvStudentList.CurrentRow== null)
+            {
+
+                MessageBox.Show("The Student is not selected","Warning");
+                return;
+            }
+
+            // get student id
+            string studentId = this.dgvStudentList.CurrentRow.Cells["StudentId"].Value.ToString();
+
+            Student objStu = objStuService.GetStudentById(studentId);
+
+            FrmEditStudent frmEditStu = new FrmEditStudent(objStu);
+
+            frmEditStu.Show();
+
+
         }
         //delete student
         private void btnDel_Click(object sender, EventArgs e)

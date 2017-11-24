@@ -137,30 +137,30 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(253, 69);
+            this.label2.Location = new System.Drawing.Point(240, 68);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 13);
+            this.label2.Size = new System.Drawing.Size(54, 13);
             this.label2.TabIndex = 0;
-            this.label2.Text = "性别：";
+            this.label2.Text = "Gender：";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(383, 69);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 13);
+            this.label3.Size = new System.Drawing.Size(57, 13);
             this.label3.TabIndex = 0;
-            this.label3.Text = "出生日期：";
+            this.label3.Text = "Birthday：";
             // 
             // rdoMale
             // 
             this.rdoMale.AutoSize = true;
             this.rdoMale.Location = new System.Drawing.Point(300, 67);
             this.rdoMale.Name = "rdoMale";
-            this.rdoMale.Size = new System.Drawing.Size(37, 17);
+            this.rdoMale.Size = new System.Drawing.Size(34, 17);
             this.rdoMale.TabIndex = 1;
             this.rdoMale.TabStop = true;
-            this.rdoMale.Text = "男";
+            this.rdoMale.Text = "M";
             this.rdoMale.UseVisualStyleBackColor = true;
             // 
             // txtAddress
@@ -193,10 +193,10 @@
             this.rdoFemale.AutoSize = true;
             this.rdoFemale.Location = new System.Drawing.Point(341, 67);
             this.rdoFemale.Name = "rdoFemale";
-            this.rdoFemale.Size = new System.Drawing.Size(37, 17);
+            this.rdoFemale.Size = new System.Drawing.Size(31, 17);
             this.rdoFemale.TabIndex = 2;
             this.rdoFemale.TabStop = true;
-            this.rdoFemale.Text = "女";
+            this.rdoFemale.Text = "F";
             this.rdoFemale.UseVisualStyleBackColor = true;
             // 
             // txtPhoneNumber
