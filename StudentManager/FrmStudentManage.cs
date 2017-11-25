@@ -75,7 +75,10 @@ namespace StudentManager
         }
         private void txtStudentId_KeyDown(object sender, KeyEventArgs e)
         {
-         
+            if(this.txtStudentId.Text.Trim().Length !=0 && e.KeyValue == 13)
+            {
+               btnQueryById_Click(null,null);
+            }
         }
         //double click to demonstrate students
         private void dgvStudentList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -163,6 +166,11 @@ namespace StudentManager
         private void cboClass_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void tsmiModifyStu_Click(object sender, EventArgs e)
+        {
+            btnEidt_Click(null,null);
         }
     }
 
