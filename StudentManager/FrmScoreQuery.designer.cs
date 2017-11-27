@@ -230,7 +230,7 @@
             // SQLServerDB
             // 
             this.SQLServerDB.DataPropertyName = "SQLServerDB";
-            this.SQLServerDB.HeaderText = "DataBase Points";
+            this.SQLServerDB.HeaderText = "DB Points";
             this.SQLServerDB.Name = "SQLServerDB";
             this.SQLServerDB.ReadOnly = true;
             // 

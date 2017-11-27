@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Models;
+
+using DAL;
 using System.Data;
 using System.Data.SqlClient;
+
 
 namespace DAL
 {
@@ -36,7 +39,16 @@ namespace DAL
 
             return listStuClass;
         }
+     
+          public DataSet GetAllClassesName()
+        {
+            string sql = "select ClassId,ClassName from StudentClass";
+
+            return SQLHelper.GetDataSet(sql);
+
+        }
 
         #endregion
+
     }
 }
