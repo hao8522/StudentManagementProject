@@ -21,7 +21,7 @@ namespace StudentManager
         {
             InitializeComponent();
 
-            DataTable dt = objStuClassService.GetAllClasses().Tables[0];
+            DataTable dt = objStuClassService.GetAllClassesName().Tables[0];
             this.cboClass.DataSource = dt;
             this.cboClass.DisplayMember = "ClassName";
             this.cboClass.ValueMember = "ClassId";
@@ -29,6 +29,7 @@ namespace StudentManager
 
             this.ds = objScoreListService.GetAllScoreList();
             this.dgvScoreList.DataSource = ds.Tables[0];
+            new DataGridViewStyle().DgvStyle1(this.dgvScoreList);
         }     
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -40,11 +41,13 @@ namespace StudentManager
         {
             if (ds == null) return;
             this.ds.Tables[0].DefaultView.RowFilter = string.Format("ClassName='{0}'",this.cboClass.Text.Trim());
+            new DataGridViewStyle().DgvStyle1(this.dgvScoreList);
         }
         //display all the score
         private void btnShowAll_Click(object sender, EventArgs e)
         {
             this.ds.Tables[0].DefaultView.RowFilter = "ClassName like '%%'";
+            new DataGridViewStyle().DgvStyle1(this.dgvScoreList);
         }
         //search by c#
         private void txtScore_TextChanged(object sender, EventArgs e)
@@ -54,13 +57,15 @@ namespace StudentManager
             if (DataValidation.IsInteger(this.txtScore.Text.Trim()))
             {
                 this.ds.Tables[0].DefaultView.RowFilter = "CSharp>" + this.txtScore.Text.Trim();
+                new DataGridViewStyle().DgvStyle1(this.dgvScoreList);
+
             }
          
         }
 
         private void dgvScoreList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-           // Common.DataGridViewStyle.DgvRowPostPaint(this.dgvScoreList, e);
+           DataGridViewStyle.DgvRowPostPaint(this.dgvScoreList, e);
         }
 
         //print 

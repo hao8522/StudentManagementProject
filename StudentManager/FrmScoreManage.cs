@@ -23,8 +23,8 @@ namespace StudentManager
             InitializeComponent();
             
             this.dgvScoreList.AutoGenerateColumns = false;
-           //this.cboClass.SelectedIndexChanged += new System.EventHandler(this.cboClass_SelectedIndexChanged);
-           DataTable dt= objStuClassService.GetAllClasses().Tables[0];
+          this.cboClass.SelectedIndexChanged += new System.EventHandler(this.cboClass_SelectedIndexChanged);
+          DataTable dt= objStuClassService.GetAllClassesName().Tables[0];
          
            this.cboClass.DataSource = dt;
            
@@ -40,17 +40,18 @@ namespace StudentManager
         //search by class 
         private void cboClass_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
 
-            //if (this.cboClass.SelectedIndex != -1)
+
+            //if (this.cboClass.SelectedIndex == -1)
             //{
             //    MessageBox.Show("Please select Class Name", "Warning");
             //    return;
             //}
 
-     
+
             this.dgvScoreList.DataSource = objScoreListService.QueryScoreListByClassName(this.cboClass.Text.Trim());
-          
+            new DataGridViewStyle().DgvStyle1(this.dgvScoreList);
+
         }
         //close
         private void btnClose_Click(object sender, EventArgs e)
@@ -60,12 +61,12 @@ namespace StudentManager
         //all the students score
         private void btnStat_Click(object sender, EventArgs e)
         {
-            
+            this.dgvScoreList.DataSource = objScoreListService.QueryScoreListByClassName("");
         }
 
         private void dgvScoreList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            //Common.DataGridViewStyle.DgvRowPostPaint(this.dgvScoreList, e);
+            DataGridViewStyle.DgvRowPostPaint(this.dgvScoreList, e);
         }
 
     
