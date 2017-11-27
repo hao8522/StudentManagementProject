@@ -6,16 +6,27 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Models;
+using DAL;
 
 
 namespace StudentManager
 {
     public partial class FrmScoreQuery : Form
     {
+        private StudentClassService objStuClassService = new StudentClassService();
              private DataSet ds = null;//save result
         public FrmScoreQuery()
         {
             InitializeComponent();
+
+            DataTable dt = objStuClassService.GetAllClasses().Tables[0];
+            this.cboClass.DataSource = dt;
+            this.cboClass.DisplayMember = "ClassName";
+            this.cboClass.ValueMember = "ClassId";
+            this.cboClass.SelectedValue = -1;
+
+
        
         }     
 
