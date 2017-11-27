@@ -38,7 +38,8 @@ namespace StudentManager
         //search by class
         private void cboClass_SelectedIndexChanged(object sender, EventArgs e)
         {
-        
+            if (ds == null) return;
+            this.ds.Tables[0].DefaultView.RowFilter = string.Format("ClassName='{0}'",this.cboClass.Text.Trim());
         }
         //display all the score
         private void btnShowAll_Click(object sender, EventArgs e)
@@ -48,7 +49,13 @@ namespace StudentManager
         //search by c#
         private void txtScore_TextChanged(object sender, EventArgs e)
         {
-           
+            if (this.txtScore.Text.Trim().Length == 0) return;
+
+            if (DataValidation.IsInteger(this.txtScore.Text.Trim()))
+            {
+                this.ds.Tables[0].DefaultView.RowFilter = "CSharp>" + this.txtScore.Text.Trim();
+            }
+         
         }
 
         private void dgvScoreList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)

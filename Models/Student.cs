@@ -20,5 +20,8 @@ namespace Models
         public string StudentAddress { get; set; }
         public int ClassId { get; set; }
 
+        public string ClassName { get; set; }
+        public int CSharp { get; set; }
+        public int SQLServerDB { get; set; }
     }
 }
