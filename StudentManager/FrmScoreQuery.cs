@@ -15,6 +15,7 @@ namespace StudentManager
     public partial class FrmScoreQuery : Form
     {
         private StudentClassService objStuClassService = new StudentClassService();
+        private ScoreListService objScoreListService = new ScoreListService();
              private DataSet ds = null;//save result
         public FrmScoreQuery()
         {
@@ -26,8 +27,8 @@ namespace StudentManager
             this.cboClass.ValueMember = "ClassId";
             this.cboClass.SelectedValue = -1;
 
-
-       
+            this.ds = objScoreListService.GetAllScoreList();
+            this.dgvScoreList.DataSource = ds.Tables[0];
         }     
 
         private void btnClose_Click(object sender, EventArgs e)
