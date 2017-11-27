@@ -128,7 +128,49 @@ namespace StudentManager
         //delete student
         private void btnDel_Click(object sender, EventArgs e)
         {
+            #region data validation
+            if (this.dgvStudentList.RowCount == 0)
+            {
+                MessageBox.Show("Please select a student", "Warning");
+                return;
+            }
+
+            if (this.dgvStudentList.CurrentRow == null)
+            {
+                MessageBox.Show("Please select a student that you want to delete","Warning");
+                return;
+            }
+            #endregion
+
+            DialogResult result = MessageBox.Show("Do you want to delete this student?","Warning",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+
+
+
+
+            #region connect  database
+            string studentId = this.dgvStudentList.CurrentRow.Cells["StudentId"].Value.ToString();
+
            
+            try
+            {
+                if (objStuService.DeleteStudent(studentId) == 1)
+                {
+                    btnQuery_Click(null, null);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Delete Student Error:"+ex.Message,"Warning");
+            }
+
+            #endregion
         }
         //sort by name
         private void btnNameDESC_Click(object sender, EventArgs e)

@@ -272,7 +272,37 @@ namespace DAL
         #endregion
 
 
+        #region Delete Student
+        public int DeleteStudent(string stuId)
+        {
 
+            string sql = "delete from Students where StudentId=@StudentId";
+
+            SqlParameter[] param = new SqlParameter[]
+            {
+                new SqlParameter("@StudentId",stuId)
+            };
+
+
+            try
+            {
+                return SQLHelper.Update(sql, param);
+            }
+            catch ( SqlException ex)
+            {
+                if (ex.Number == 547)
+                {
+                    throw new Exception("You can not delete this Student" + ex.Message);
+                }
+                else
+                {
+                    throw  new Exception("Delete Student error" + ex.Message);
+                }
+             
+            } 
+        }
+
+        #endregion
 
     }
 }
