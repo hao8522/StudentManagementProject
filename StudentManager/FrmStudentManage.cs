@@ -116,7 +116,12 @@ namespace StudentManager
 
             FrmEditStudent frmEditStu = new FrmEditStudent(objStu);
 
-            frmEditStu.Show();
+            if (frmEditStu.ShowDialog() == DialogResult.OK)
+            {
+                btnQuery_Click(null,null);
+            }
+
+            //frmEditStu.Show();
 
 
         }
