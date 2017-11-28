@@ -24,7 +24,7 @@ namespace StudentManager
             
             this.dgvScoreList.AutoGenerateColumns = false;
            //this.cboClass.SelectedIndexChanged += new System.EventHandler(this.cboClass_SelectedIndexChanged);
-           DataTable dt= objStuClassService.GetAllClasses().Tables[0];
+           DataTable dt= objStuClassService.GetAllClassesName().Tables[0];
          
            this.cboClass.DataSource = dt;
            
@@ -60,7 +60,7 @@ namespace StudentManager
         //all the students score
         private void btnStat_Click(object sender, EventArgs e)
         {
-            
+            this.dgvScoreList.DataSource = objScoreListService.QueryScoreListByClassName("");
         }
 
         private void dgvScoreList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)

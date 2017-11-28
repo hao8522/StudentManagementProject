@@ -73,5 +73,65 @@ namespace DAL
         }
 
         #endregion
+
+        #region GetScore Info 
+        /// <summary>
+        /// count absent number, and score result- avg score and number
+        /// </summary>
+        /// <param name="classId"></param>
+        /// <returns></returns>
+        public Dictionary<string,string> QueryScoreInfo(string classId)
+        {
+
+            string sql = "select stuCount=count(*) ,avgCSharp=avg(CSharp), avgDB= avg(SQLServerDB) from ScoreList";
+            sql += "inner join Students on Students.StudnetId= ScoreList.StudentId ";
+
+            if(classId !=null && classId.Length != 0)
+            {
+                sql += "where ClassId=@ClassId";
+            }
+
+
+            // absent number
+            sql += ";select absentCount=count(*) from Students where StudentId not in (select studentId from ScoreList)";
+
+           if(classId!=null && classId.Length != 0)
+            {
+                sql += "where ClassId=@ClassId ";
+            }
+
+            SqlParameter[] param = new SqlParameter[]
+            {
+               new SqlParameter("@ClassId",classId)
+           };
+
+            SqlDataReader objReader = SQLHelper.GetReader(sql,param);
+
+            Dictionary<string, string> scoreInfo = null;
+            if (objReader.Read())
+            {
+                scoreInfo = new Dictionary<string, string>();
+
+                scoreInfo.Add("stuCount",objReader["stuCount"].ToString());
+                scoreInfo.Add("avgCSharp",objReader["avgCsharp"].ToString());
+                scoreInfo.Add("avgDB",objReader["avgDB"].ToString());
+
+            }
+
+
+            if (objReader.NextResult())
+            {
+                if (objReader.Read())
+                {
+                    scoreInfo.Add("absentCount",objReader["absentCount"].ToString());
+                }
+            }
+
+            objReader.Close();
+
+            return scoreInfo;
+        }
+
+        #endregion
     }
 }

@@ -21,7 +21,7 @@ namespace StudentManager
         {
             InitializeComponent();
 
-            DataTable dt = objStuClassService.GetAllClasses().Tables[0];
+            DataTable dt = objStuClassService.GetAllClassesName().Tables[0];
             this.cboClass.DataSource = dt;
             this.cboClass.DisplayMember = "ClassName";
             this.cboClass.ValueMember = "ClassId";
