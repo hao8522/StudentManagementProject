@@ -50,7 +50,7 @@
             this.lblStuClass = new System.Windows.Forms.Label();
             this.lblStuId = new System.Windows.Forms.Label();
             this.lblAbsenceCount = new System.Windows.Forms.Label();
-            this.lblReal = new System.Windows.Forms.Label();
+            this.lblSignCount = new System.Windows.Forms.Label();
             this.lblCount = new System.Windows.Forms.Label();
             this.lblStuName = new System.Windows.Forms.Label();
             this.lblInfo = new System.Windows.Forms.Label();
@@ -103,7 +103,7 @@
             // 
             this.lblWeek.BackColor = System.Drawing.Color.Black;
             this.lblWeek.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblWeek.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWeek.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWeek.ForeColor = System.Drawing.Color.Red;
             this.lblWeek.Location = new System.Drawing.Point(527, 81);
             this.lblWeek.Margin = new System.Windows.Forms.Padding(17, 0, 17, 0);
@@ -284,18 +284,18 @@
             this.lblAbsenceCount.Text = "0";
             this.lblAbsenceCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblReal
+            // lblSignCount
             // 
-            this.lblReal.BackColor = System.Drawing.Color.White;
-            this.lblReal.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblReal.Font = new System.Drawing.Font("SimSun", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblReal.Location = new System.Drawing.Point(333, 28);
-            this.lblReal.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
-            this.lblReal.Name = "lblReal";
-            this.lblReal.Size = new System.Drawing.Size(140, 42);
-            this.lblReal.TabIndex = 83;
-            this.lblReal.Text = "0";
-            this.lblReal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblSignCount.BackColor = System.Drawing.Color.White;
+            this.lblSignCount.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblSignCount.Font = new System.Drawing.Font("SimSun", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblSignCount.Location = new System.Drawing.Point(333, 28);
+            this.lblSignCount.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
+            this.lblSignCount.Name = "lblSignCount";
+            this.lblSignCount.Size = new System.Drawing.Size(140, 42);
+            this.lblSignCount.TabIndex = 83;
+            this.lblSignCount.Text = "0";
+            this.lblSignCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblCount
             // 
@@ -357,7 +357,7 @@
             this.gp01.Controls.Add(this.lblStuName);
             this.gp01.Controls.Add(this.lblInfo);
             this.gp01.Controls.Add(this.lblCount);
-            this.gp01.Controls.Add(this.lblReal);
+            this.gp01.Controls.Add(this.lblSignCount);
             this.gp01.Controls.Add(this.txtStuCardNo);
             this.gp01.Controls.Add(this.lblAbsenceCount);
             this.gp01.Controls.Add(this.lblStuId);
@@ -490,7 +490,7 @@
             // 
             // DTime
             // 
-            this.DTime.DataPropertyName = "DTime";
+            this.DTime.DataPropertyName = "SignedTime";
             this.DTime.HeaderText = "Date";
             this.DTime.Name = "DTime";
             this.DTime.ReadOnly = true;
@@ -559,6 +559,7 @@
             this.Name = "FrmAttendance";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "[Attendance]";
+            this.Load += new System.EventHandler(this.FrmAttendance_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbStu)).EndInit();
             this.gp01.ResumeLayout(false);
             this.gp01.PerformLayout();
@@ -587,7 +588,7 @@
         private System.Windows.Forms.Label lblStuClass;
         private System.Windows.Forms.Label lblStuId;
         private System.Windows.Forms.Label lblAbsenceCount;
-        private System.Windows.Forms.Label lblReal;
+        private System.Windows.Forms.Label lblSignCount;
         private System.Windows.Forms.Label lblCount;
         private System.Windows.Forms.Label lblStuName;
         private System.Windows.Forms.Label lblInfo;
