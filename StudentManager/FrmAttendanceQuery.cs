@@ -42,7 +42,7 @@ namespace StudentManager
         //add line number
         private void dgvStudentList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-          //  Common.DataGridViewStyle.DgvRowPostPaint(this.dgvStudentList, e);
+          DataGridViewStyle.DgvRowPostPaint(this.dgvStudentList, e);
         }
 
         private void btnClose_Click(object sender, EventArgs e)

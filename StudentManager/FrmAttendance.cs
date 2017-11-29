@@ -96,6 +96,15 @@ namespace StudentManager
                 this.lblStuId.Text = objStu.StudentId.ToString();
                 this.lblStuClass.Text = objStu.ClassName;
                 // image
+                if(objStu.StuImage!=null && objStu.StuImage.Length != 0)
+                {
+                    this.pbStu.Image = (Image)new SerializeObjectToString().DeserializeObject(objStu.StuImage);
+                }
+                else
+                {
+                    this.pbStu.Image = Image.FromFile("default.png");
+                }
+               
 
                 string result = objAttendanceService.AddCardNo(this.txtStuCardNo.Text.Trim());
 
@@ -134,6 +143,11 @@ namespace StudentManager
         private void FrmAttendance_Load(object sender, EventArgs e)
         {
             this.txtStuCardNo.Focus();
+        }
+
+        private void dgvStudentList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+              DataGridViewStyle.DgvRowPostPaint(this.dgvStudentList, e);
         }
     }
 }
