@@ -15,7 +15,7 @@ namespace StudentManager
     {
         private StudentClassService objStuClassService = new StudentClassService();
         private ScoreListService objScoreListService = new ScoreListService();
-        private DataSet ds = null;
+        //private DataSet ds = null;
 
         public FrmScoreManage()
         {
@@ -23,8 +23,13 @@ namespace StudentManager
             InitializeComponent();
             
             this.dgvScoreList.AutoGenerateColumns = false;
-          this.cboClass.SelectedIndexChanged += new System.EventHandler(this.cboClass_SelectedIndexChanged);
-          DataTable dt= objStuClassService.GetAllClassesName().Tables[0];
+
+          this.cboClass.SelectedIndexChanged -= new System.EventHandler(this.cboClass_SelectedIndexChanged);
+           DataTable dt= objStuClassService.GetAllClassesName().Tables[0];
+
+         
+    
+
          
            this.cboClass.DataSource = dt;
            
@@ -34,6 +39,8 @@ namespace StudentManager
 
             this.cboClass.SelectedIndex = -1;
 
+            this.cboClass.SelectedIndexChanged += new System.EventHandler(this.cboClass_SelectedIndexChanged);
+
 
 
         }     
@@ -42,15 +49,26 @@ namespace StudentManager
         {
 
 
-            //if (this.cboClass.SelectedIndex == -1)
-            //{
-            //    MessageBox.Show("Please select Class Name", "Warning");
-            //    return;
-            //}
+
+            if (this.cboClass.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select Class Name", "Warning");
+                return;
+            }
 
 
             this.dgvScoreList.DataSource = objScoreListService.QueryScoreListByClassName(this.cboClass.Text.Trim());
-            new DataGridViewStyle().DgvStyle1(this.dgvScoreList);
+ new DataGridViewStyle().DgvStyle1(this.dgvScoreList);
+            QueryScore(this.cboClass.SelectedValue.ToString());
+         
+
+
+       
+
+
+
+           
+
 
         }
         //close
@@ -62,6 +80,21 @@ namespace StudentManager
         private void btnStat_Click(object sender, EventArgs e)
         {
             this.dgvScoreList.DataSource = objScoreListService.QueryScoreListByClassName("");
+
+
+            Dictionary<string, string> infoList = objScoreListService.QueryScoreInfo();
+            this.lblAttendCount.Text = infoList["stuCount"];
+            this.lblAbsentCount.Text = infoList["absentCount"];
+            this.lblCSharpAvg.Text = infoList["avgCSharp"];
+            this.lblDBAvg.Text = infoList["avgDB"];
+
+
+            List<string> absentList = objScoreListService.QueryAbsentList();
+            this.lblList.Items.Clear();
+            this.lblList.Items.AddRange(absentList.ToArray());
+          
+
+
         }
 
         private void dgvScoreList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
@@ -77,6 +110,29 @@ namespace StudentManager
          
         }
 
+
+        private  void QueryScore(string classId)
+        {
+            Dictionary<string, string> infoList = objScoreListService.QueryScoreInfoByClassId(classId);
+            this.lblAttendCount.Text = infoList["stuCount"];
+            this.lblAbsentCount.Text = infoList["absentCount"];
+            this.lblCSharpAvg.Text = infoList["avgCSharp"];
+            this.lblDBAvg.Text = infoList["avgDB"];
+
+
+            // absent name list
+            List<string> absentList = objScoreListService.QueryAbsentList(classId);
+            this.lblList.Items.Clear();
+            if (absentList.Count == 0)
+            {
+                this.lblList.Items.Add("no absent");
+            }
+            else
+            {
+
+                this.lblList.Items.AddRange(absentList.ToArray());
+            }
+        }
        
     }
 }
