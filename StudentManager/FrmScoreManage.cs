@@ -23,8 +23,13 @@ namespace StudentManager
             InitializeComponent();
             
             this.dgvScoreList.AutoGenerateColumns = false;
+
           this.cboClass.SelectedIndexChanged -= new System.EventHandler(this.cboClass_SelectedIndexChanged);
            DataTable dt= objStuClassService.GetAllClassesName().Tables[0];
+
+         
+    
+
          
            this.cboClass.DataSource = dt;
            
@@ -44,6 +49,7 @@ namespace StudentManager
         {
 
 
+
             if (this.cboClass.SelectedIndex == -1)
             {
                 MessageBox.Show("Please select Class Name", "Warning");
@@ -52,9 +58,18 @@ namespace StudentManager
 
 
             this.dgvScoreList.DataSource = objScoreListService.QueryScoreListByClassName(this.cboClass.Text.Trim());
-
+ new DataGridViewStyle().DgvStyle1(this.dgvScoreList);
             QueryScore(this.cboClass.SelectedValue.ToString());
          
+
+
+       
+
+
+
+           
+
+
         }
         //close
         private void btnClose_Click(object sender, EventArgs e)
@@ -65,6 +80,7 @@ namespace StudentManager
         private void btnStat_Click(object sender, EventArgs e)
         {
             this.dgvScoreList.DataSource = objScoreListService.QueryScoreListByClassName("");
+
 
             Dictionary<string, string> infoList = objScoreListService.QueryScoreInfo();
             this.lblAttendCount.Text = infoList["stuCount"];
@@ -83,7 +99,7 @@ namespace StudentManager
 
         private void dgvScoreList_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            //Common.DataGridViewStyle.DgvRowPostPaint(this.dgvScoreList, e);
+            DataGridViewStyle.DgvRowPostPaint(this.dgvScoreList, e);
         }
 
     
