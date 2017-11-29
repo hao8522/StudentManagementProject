@@ -214,7 +214,7 @@ namespace DAL
         /// get server time
         /// </summary>
         /// <returns></returns>
-        public DateTime GetServerTime()
+        public static DateTime GetServerTime()
         {
             return Convert.ToDateTime(GetSingleResult("select getdate()"));
         }

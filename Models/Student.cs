@@ -25,9 +25,9 @@ namespace Models
         public string ClassName { get; set; }
         public int CSharp { get; set; }
         public int SQLServerDB { get; set; }
+        public DateTime SignedTime { get; set; }
 
 
-       
 
     }
 }
