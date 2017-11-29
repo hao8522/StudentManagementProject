@@ -219,5 +219,49 @@ namespace DAL
             return Convert.ToDateTime(GetSingleResult("select getdate()"));
         }
 
+        public static bool UpdateByTran(List<string> sqlList)
+        {
+            SqlConnection conn = new SqlConnection(connStr);
+
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.Connection = conn;
+            try
+            {
+                conn.Open();
+
+                cmd.Transaction = conn.BeginTransaction();
+
+                foreach(string itemSql in sqlList)
+                {
+                    cmd.CommandText = itemSql;
+                    cmd.ExecuteNonQuery();
+                   
+                }
+                cmd.Transaction.Commit();
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                if(cmd.Transaction != null)
+                {
+                    cmd.Transaction.Rollback();
+                }
+
+                throw new Exception("UpdateByTran Error?" + ex.Message);
+            }
+            finally
+            {
+                if(cmd.Transaction != null)
+                {
+                    cmd.Transaction = null;
+                }
+
+                conn.Close();
+            }
+        }
+
+
     }
 }
