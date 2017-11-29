@@ -28,18 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmScoreManage));
             this.dgvScoreList = new System.Windows.Forms.DataGridView();
+            this.StudentId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StudentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ClassName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CSharp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SQLServerDB = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cboClass = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.gbStat = new System.Windows.Forms.GroupBox();
             this.lblDBAvg = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.lblCount = new System.Windows.Forms.Label();
+            this.lblAbsentCount = new System.Windows.Forms.Label();
             this.lblCSharpAvg = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -50,12 +56,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.StudentId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StudentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ClassName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CSharp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SQLServerDB = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvScoreList)).BeginInit();
             this.gbStat.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -66,14 +66,14 @@
             this.dgvScoreList.AllowUserToAddRows = false;
             this.dgvScoreList.AllowUserToDeleteRows = false;
             this.dgvScoreList.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft YaHei", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvScoreList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft YaHei", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvScoreList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvScoreList.ColumnHeadersHeight = 30;
             this.dgvScoreList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.StudentId,
@@ -82,27 +82,27 @@
             this.ClassName,
             this.CSharp,
             this.SQLServerDB});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvScoreList.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvScoreList.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvScoreList.Location = new System.Drawing.Point(19, 121);
             this.dgvScoreList.Name = "dgvScoreList";
             this.dgvScoreList.ReadOnly = true;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.DarkRed;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvScoreList.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dgvScoreList.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.DarkRed;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvScoreList.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgvScoreList.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvScoreList.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dgvScoreList.RowTemplate.Height = 23;
             this.dgvScoreList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
@@ -110,6 +110,50 @@
             this.dgvScoreList.TabIndex = 7;
             this.dgvScoreList.CurrentCellDirtyStateChanged += new System.EventHandler(this.dgvScoreList_CurrentCellDirtyStateChanged);
             this.dgvScoreList.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgvScoreList_RowPostPaint);
+            // 
+            // StudentId
+            // 
+            this.StudentId.DataPropertyName = "StudentId";
+            this.StudentId.HeaderText = "StudentId";
+            this.StudentId.Name = "StudentId";
+            this.StudentId.ReadOnly = true;
+            this.StudentId.Width = 150;
+            // 
+            // StudentName
+            // 
+            this.StudentName.DataPropertyName = "StudentName";
+            this.StudentName.HeaderText = "Student Name";
+            this.StudentName.Name = "StudentName";
+            this.StudentName.ReadOnly = true;
+            // 
+            // Gender
+            // 
+            this.Gender.DataPropertyName = "Gender";
+            this.Gender.HeaderText = "Gender";
+            this.Gender.Name = "Gender";
+            this.Gender.ReadOnly = true;
+            // 
+            // ClassName
+            // 
+            this.ClassName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ClassName.DataPropertyName = "ClassName";
+            this.ClassName.HeaderText = "Class";
+            this.ClassName.Name = "ClassName";
+            this.ClassName.ReadOnly = true;
+            // 
+            // CSharp
+            // 
+            this.CSharp.DataPropertyName = "CSharp";
+            this.CSharp.HeaderText = "C# Points";
+            this.CSharp.Name = "CSharp";
+            this.CSharp.ReadOnly = true;
+            // 
+            // SQLServerDB
+            // 
+            this.SQLServerDB.DataPropertyName = "SQLServerDB";
+            this.SQLServerDB.HeaderText = "DB Points";
+            this.SQLServerDB.Name = "SQLServerDB";
+            this.SQLServerDB.ReadOnly = true;
             // 
             // cboClass
             // 
@@ -135,7 +179,7 @@
             // 
             this.gbStat.Controls.Add(this.lblDBAvg);
             this.gbStat.Controls.Add(this.label8);
-            this.gbStat.Controls.Add(this.lblCount);
+            this.gbStat.Controls.Add(this.lblAbsentCount);
             this.gbStat.Controls.Add(this.lblCSharpAvg);
             this.gbStat.Controls.Add(this.label4);
             this.gbStat.Controls.Add(this.label6);
@@ -168,16 +212,16 @@
             this.label8.TabIndex = 11;
             this.label8.Text = "Average DB：";
             // 
-            // lblCount
+            // lblAbsentCount
             // 
-            this.lblCount.BackColor = System.Drawing.Color.White;
-            this.lblCount.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblCount.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblCount.Location = new System.Drawing.Point(97, 86);
-            this.lblCount.Name = "lblCount";
-            this.lblCount.Size = new System.Drawing.Size(61, 25);
-            this.lblCount.TabIndex = 12;
-            this.lblCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblAbsentCount.BackColor = System.Drawing.Color.White;
+            this.lblAbsentCount.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblAbsentCount.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblAbsentCount.Location = new System.Drawing.Point(97, 86);
+            this.lblAbsentCount.Name = "lblAbsentCount";
+            this.lblAbsentCount.Size = new System.Drawing.Size(61, 25);
+            this.lblAbsentCount.TabIndex = 12;
+            this.lblAbsentCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblCSharpAvg
             // 
@@ -280,50 +324,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Absent List";
             // 
-            // StudentId
-            // 
-            this.StudentId.DataPropertyName = "StudentId";
-            this.StudentId.HeaderText = "StudentId";
-            this.StudentId.Name = "StudentId";
-            this.StudentId.ReadOnly = true;
-            this.StudentId.Width = 150;
-            // 
-            // StudentName
-            // 
-            this.StudentName.DataPropertyName = "StudentName";
-            this.StudentName.HeaderText = "Student Name";
-            this.StudentName.Name = "StudentName";
-            this.StudentName.ReadOnly = true;
-            // 
-            // Gender
-            // 
-            this.Gender.DataPropertyName = "Gender";
-            this.Gender.HeaderText = "Gender";
-            this.Gender.Name = "Gender";
-            this.Gender.ReadOnly = true;
-            // 
-            // ClassName
-            // 
-            this.ClassName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ClassName.DataPropertyName = "ClassName";
-            this.ClassName.HeaderText = "Class";
-            this.ClassName.Name = "ClassName";
-            this.ClassName.ReadOnly = true;
-            // 
-            // CSharp
-            // 
-            this.CSharp.DataPropertyName = "CSharp";
-            this.CSharp.HeaderText = "C# Points";
-            this.CSharp.Name = "CSharp";
-            this.CSharp.ReadOnly = true;
-            // 
-            // SQLServerDB
-            // 
-            this.SQLServerDB.DataPropertyName = "SQLServerDB";
-            this.SQLServerDB.HeaderText = "DB Points";
-            this.SQLServerDB.Name = "SQLServerDB";
-            this.SQLServerDB.ReadOnly = true;
-            // 
             // FrmScoreManage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -363,7 +363,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblDBAvg;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label lblCount;
+        private System.Windows.Forms.Label lblAbsentCount;
         private System.Windows.Forms.Label lblCSharpAvg;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
